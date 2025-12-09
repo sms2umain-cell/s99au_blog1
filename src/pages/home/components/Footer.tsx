@@ -36,11 +36,11 @@ export default function Footer() {
   };
 
   const socialLinks = [
-    { icon: 'ri-facebook-fill', url: '#', color: 'hover:bg-blue-600' },
-    { icon: 'ri-twitter-x-fill', url: '#', color: 'hover:bg-gray-900' },
-    { icon: 'ri-instagram-fill', url: '#', color: 'hover:bg-pink-600' },
-    { icon: 'ri-youtube-fill', url: '#', color: 'hover:bg-red-600' },
-    { icon: 'ri-telegram-fill', url: '#', color: 'hover:bg-blue-500' }
+    { icon: 'ri-facebook-fill', url: 'https://www.facebook.com/s99aus', color: 'hover:bg-blue-600' },
+    { icon: 'ri-twitter-x-fill', url: 'https://x.com/s99auOfficial', color: 'hover:bg-gray-900' },
+    { icon: 'ri-instagram-fill', url: 'https://www.instagram.com/s99au.official/', color: 'hover:bg-pink-600' },
+    { icon: 'ri-medium-fill', url: 'https://medium.com/@s99au.official', color: 'hover:bg-gray-800' },
+    { icon: 'ri-telegram-fill', url: 'https://t.me/s99au', color: 'hover:bg-blue-500' }
   ];
 
   const paymentMethods = [
@@ -66,6 +66,8 @@ export default function Footer() {
                 <a
                   key={index}
                   href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className={`w-10 h-10 bg-white/20 rounded-full flex items-center justify-center ${social.color} transition-colors cursor-pointer`}
                 >
                   <i className={`${social.icon} text-lg`}></i>

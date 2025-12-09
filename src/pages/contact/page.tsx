@@ -215,15 +215,17 @@ export default function ContactPage() {
                 </p>
                 <div className="flex space-x-3">
                   {[
-                    { icon: 'ri-facebook-fill', color: 'hover:bg-blue-600' },
-                    { icon: 'ri-twitter-x-fill', color: 'hover:bg-gray-900' },
-                    { icon: 'ri-instagram-fill', color: 'hover:bg-pink-600' },
-                    { icon: 'ri-youtube-fill', color: 'hover:bg-red-600' },
-                    { icon: 'ri-telegram-fill', color: 'hover:bg-blue-500' }
+                    { icon: 'ri-facebook-fill', url: 'https://www.facebook.com/s99aus', color: 'hover:bg-blue-600' },
+                    { icon: 'ri-twitter-x-fill', url: 'https://x.com/s99auOfficial', color: 'hover:bg-gray-900' },
+                    { icon: 'ri-instagram-fill', url: 'https://www.instagram.com/s99au.official/', color: 'hover:bg-pink-600' },
+                    { icon: 'ri-medium-fill', url: 'https://medium.com/@s99au.official', color: 'hover:bg-gray-800' },
+                    { icon: 'ri-telegram-fill', url: 'https://t.me/s99au', color: 'hover:bg-blue-500' }
                   ].map((social, index) => (
                     <a
                       key={index}
-                      href="#"
+                      href={social.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className={`w-12 h-12 bg-white rounded-full flex items-center justify-center ${social.color} text-gray-700 hover:text-white transition-all shadow-md cursor-pointer`}
                     >
                       <i className={`${social.icon} text-xl`}></i>
