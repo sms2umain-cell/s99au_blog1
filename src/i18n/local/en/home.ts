@@ -22,7 +22,7 @@ export const home = {
   
   categories: {
     title: 'Game Categories',
-    subtitle: 'Super99au offers diverse gaming options to meet different player needs',
+    subtitle: 'S99au offers diverse gaming options to meet different player needs',
     pokies: {
       title: 'Pokies',
       description: 'Explore the most popular slot games'
@@ -68,10 +68,10 @@ export const home = {
   
   latest: {
     title: 'Latest Articles',
-    subtitle: 'Get the latest game guides, strategy tips and industry news from Super99au',
+    subtitle: 'Get the latest game guides, strategy tips and industry news from S99au',
     article1: {
-      title: 'Super99au Pokies Complete Beginner\'s Guide',
-      excerpt: 'Learn how to start your Pokies journey at Super99au, master basic gameplay and strategies',
+      title: 'S99au Pokies Complete Beginner\'s Guide',
+      excerpt: 'Learn how to start your Pokies journey at S99au, master basic gameplay and strategies',
       category: 'Pokies',
       tags: ['Beginner\'s Guide', 'Pokies', 'Strategy Tips']
     },
@@ -83,7 +83,7 @@ export const home = {
     },
     article3: {
       title: 'Live Games Complete Casino Guide',
-      excerpt: 'Experience the charm of Super99au live casino, interact with professional dealers in real-time',
+      excerpt: 'Experience the charm of S99au live casino, interact with professional dealers in real-time',
       category: 'Live Games',
       tags: ['Live Games', 'Live Casino', 'Interactive Experience']
     }
@@ -146,7 +146,7 @@ export const home = {
     terms: 'Terms of Use',
     responsibleGaming: 'Responsible Gaming',
     paymentTitle: 'Supported Payment Methods',
-    copyright: '© 2024 S99AU Gaming Blog. All rights reserved.',
+    copyright: '© 2025 S99AU Gaming Blog. All rights reserved.',
     poweredBy: 'Powered by Readdy'
   }
 };

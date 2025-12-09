@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import Navbar from '../home/components/Navbar';
 import Footer from '../home/components/Footer';
@@ -132,22 +132,48 @@ export default function FAQPage() {
     }
   ];
 
+  // 生成 FAQ Schema.org 结构化数据
+  useEffect(() => {
+    const allQuestions = faqCategories.flatMap(cat => cat.questions);
+    const faqSchema = {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": allQuestions.map(faq => ({
+        "@type": "Question",
+        "name": faq.question,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": faq.answer
+        }
+      }))
+    };
+
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.text = JSON.stringify(faqSchema);
+    document.head.appendChild(script);
+
+    return () => {
+      document.head.removeChild(script);
+    };
+  }, [faqCategories]);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-gray-100">
       <Navbar />
       
-      <div className="pt-24 pb-16">
+      <main className="pt-24 pb-16">
         <div className="max-w-5xl mx-auto px-4">
-          <div className="text-center mb-16">
+          <header className="text-center mb-16">
             <h1 className="text-5xl font-bold text-gray-900 mb-6">{t('title')}</h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               {t('subtitle')}
             </p>
-          </div>
+          </header>
 
           <div className="space-y-8">
             {faqCategories.map((category, categoryIndex) => (
-              <div key={categoryIndex} className="bg-white rounded-2xl p-8 shadow-lg">
+              <section key={categoryIndex} className="bg-white rounded-2xl p-8 shadow-lg">
                 <div className="flex items-center mb-6">
                   <div className="w-12 h-12 bg-gradient-to-br from-amber-500 to-orange-600 rounded-xl flex items-center justify-center mr-4">
                     <i className={`${category.icon} text-2xl text-white`}></i>
@@ -161,15 +187,18 @@ export default function FAQPage() {
                     const isOpen = openIndex === globalIndex;
 
                     return (
-                      <div
+                      <article
                         key={faqIndex}
                         className="border border-gray-200 rounded-xl overflow-hidden hover:border-amber-300 transition-colors"
+                        itemScope
+                        itemProp="mainEntity"
+                        itemType="https://schema.org/Question"
                       >
                         <button
                           onClick={() => setOpenIndex(isOpen ? null : globalIndex)}
                           className="w-full px-6 py-4 flex items-center justify-between bg-gray-50 hover:bg-gray-100 transition-colors cursor-pointer"
                         >
-                          <span className="text-left font-semibold text-gray-900 pr-4">
+                          <span className="text-left font-semibold text-gray-900 pr-4" itemProp="name">
                             {faq.question}
                           </span>
                           <i
@@ -179,15 +208,15 @@ export default function FAQPage() {
                           ></i>
                         </button>
                         {isOpen && (
-                          <div className="px-6 py-4 bg-white">
-                            <p className="text-gray-700 leading-relaxed">{faq.answer}</p>
+                          <div className="px-6 py-4 bg-white" itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
+                            <p className="text-gray-700 leading-relaxed" itemProp="text">{faq.answer}</p>
                           </div>
                         )}
-                      </div>
+                      </article>
                     );
                   })}
                 </div>
-              </div>
+              </section>
             ))}
           </div>
 
@@ -204,7 +233,7 @@ export default function FAQPage() {
             </a>
           </div>
         </div>
-      </div>
+      </main>
 
       <Footer />
     </div>

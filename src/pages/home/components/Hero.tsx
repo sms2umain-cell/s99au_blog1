@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -60,7 +59,8 @@ export default function Hero() {
           <div className="absolute inset-0">
             <img
               src={slide.image}
-              alt={slide.title || 'Hero slide'}
+              alt={`${slide.title} - Super99au 在线游戏平台`}
+              title={`${slide.title} - 老虎机 Pokies 体育博彩`}
               className="w-full h-full object-cover object-top"
               onError={handleImageError}
             />
@@ -69,9 +69,9 @@ export default function Hero() {
 
           <div className="relative h-full flex items-center justify-center">
             <div className="w-full max-w-4xl mx-auto px-4 text-center">
-              <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 animate-fade-in">
+              <div className="text-5xl md:text-7xl font-bold text-white mb-6 animate-fade-in">
                 {slide.title || ''}
-              </h1>
+              </div>
               <p className="text-2xl md:text-3xl text-amber-300 mb-4 font-medium">
                 {slide.subtitle || ''}
               </p>
@@ -81,7 +81,7 @@ export default function Hero() {
               <a
                 href="https://t.ly/s99auBlog"
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noopener noreferrer nofollow"
                 className="inline-block px-10 py-4 bg-gradient-to-r from-amber-500 to-amber-600 text-white text-lg font-semibold rounded-full hover:from-amber-600 hover:to-amber-700 transition-all shadow-2xl hover:shadow-amber-500/50 whitespace-nowrap cursor-pointer"
               >
                 {slide.cta || 'Learn More'}

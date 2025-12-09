@@ -43,11 +43,6 @@ export default function Footer() {
     { icon: 'ri-telegram-fill', url: 'https://t.me/s99au', color: 'hover:bg-blue-500' }
   ];
 
-  const paymentMethods = [
-    'CIMB Bank', 'BSN', 'ABB Bank', 'Touch n Go', 'Digi', 
-    'Maxis', 'Celcom', 'Maybank', 'Hong Leong Bank'
-  ];
-
   return (
     <footer className="bg-gradient-to-br from-amber-600 via-amber-700 to-orange-700 text-white">
       <div className="max-w-7xl mx-auto px-4 py-16">
@@ -93,20 +88,6 @@ export default function Footer() {
               </ul>
             </div>
           ))}
-        </div>
-
-        <div className="border-t border-white/20 pt-8 mb-8">
-          <h3 className="text-lg font-bold mb-4 text-center">{t('footer.paymentTitle')}</h3>
-          <div className="flex flex-wrap justify-center gap-4">
-            {paymentMethods.map((method, index) => (
-              <div
-                key={index}
-                className="px-4 py-2 bg-white/10 rounded-lg text-sm font-medium"
-              >
-                {method}
-              </div>
-            ))}
-          </div>
         </div>
 
         <div className="border-t border-white/20 pt-8 text-center">

@@ -67,24 +67,29 @@ export default function Navbar({ scrolled = true }: NavbarProps) {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white shadow-lg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
-          {/* Logo */}
-          <div 
+          {/* Logo with H1 for homepage */}
+          <h1 
             onClick={() => handleNavClick('/')}
-            className="flex-shrink-0 cursor-pointer"
+            className="flex-shrink-0 cursor-pointer m-0"
           >
             <img 
               src="https://static.readdy.ai/image/31a1107996a99a56af02e61b22b1b81c/d5a1169527fb3b33d0026e1f33b31cf5.png" 
-              alt="S99AU Logo" 
+              alt="S99AU - 澳大利亚顶级在线游戏平台" 
+              title="S99au - 老虎机 Pokies 体育博彩"
               className="h-12"
             />
-          </div>
+          </h1>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-1">
             {navItems.map((item) => (
               <a
                 key={item.path}
-                onClick={() => handleNavClick(item.path)}
+                href={item.path}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavClick(item.path);
+                }}
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-all cursor-pointer whitespace-nowrap ${
                   isActive(item.path)
                     ? 'bg-amber-500 text-white'
@@ -99,7 +104,7 @@ export default function Navbar({ scrolled = true }: NavbarProps) {
             <a
               href="https://t.ly/s99auBlog"
               target="_blank"
-              rel="noopener noreferrer"
+              rel="noopener noreferrer nofollow"
               className="px-5 py-2 bg-gradient-to-r from-amber-500 to-amber-600 text-white text-sm font-semibold rounded-full hover:from-amber-600 hover:to-amber-700 transition-all shadow-md hover:shadow-lg whitespace-nowrap cursor-pointer flex items-center space-x-2"
             >
               <i className="ri-user-line text-base"></i>
@@ -110,6 +115,7 @@ export default function Navbar({ scrolled = true }: NavbarProps) {
             <button
               onClick={toggleLanguage}
               className="px-4 py-2 bg-white/10 hover:bg-white/20 rounded-full transition-colors flex items-center space-x-2 cursor-pointer"
+              aria-label="切换语言"
             >
               <i className="ri-global-line text-lg"></i>
               <span className="text-sm font-medium">{i18n.language === 'en' ? 'EN' : 'CN'}</span>
@@ -122,8 +128,9 @@ export default function Navbar({ scrolled = true }: NavbarProps) {
             <a
               href="https://t.ly/s99auBlog"
               target="_blank"
-              rel="noopener noreferrer"
+              rel="noopener noreferrer nofollow"
               className="w-9 h-9 bg-gradient-to-r from-amber-500 to-amber-600 text-white rounded-full hover:from-amber-600 hover:to-amber-700 transition-all shadow-md hover:shadow-lg cursor-pointer flex items-center justify-center"
+              aria-label="注册登录"
             >
               <i className="ri-user-line text-base"></i>
             </a>
@@ -132,6 +139,7 @@ export default function Navbar({ scrolled = true }: NavbarProps) {
             <button
               onClick={toggleLanguage}
               className="w-9 h-9 bg-white/10 hover:bg-white/20 rounded-full transition-colors flex items-center justify-center cursor-pointer"
+              aria-label="切换语言"
             >
               <span className="text-xs font-medium">{i18n.language === 'en' ? 'EN' : 'CN'}</span>
             </button>
@@ -139,6 +147,7 @@ export default function Navbar({ scrolled = true }: NavbarProps) {
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="text-gray-700 hover:text-amber-600 cursor-pointer"
+              aria-label="菜单"
             >
               <i className={`${mobileMenuOpen ? 'ri-close-line' : 'ri-menu-line'} text-3xl`}></i>
             </button>
@@ -152,7 +161,11 @@ export default function Navbar({ scrolled = true }: NavbarProps) {
               {navItems.map((item) => (
                 <a
                   key={item.path}
-                  onClick={() => handleNavClick(item.path)}
+                  href={item.path}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavClick(item.path);
+                  }}
                   className={`px-4 py-3 rounded-lg text-sm font-medium transition-all cursor-pointer ${
                     isActive(item.path)
                       ? 'bg-amber-500 text-white'

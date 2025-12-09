@@ -6,7 +6,7 @@ import Footer from '../../home/components/Footer';
 import { slotsArticleContents } from '../slotsArticleContents';
 
 export default function SlotsArticlePage() {
-  const { t } = useTranslation('slots');
+  const { t, i18n } = useTranslation('slots');
   const [searchParams] = useSearchParams();
   const articleId = parseInt(searchParams.get('id') || '1');
   const article = slotsArticleContents.find(a => a.id === articleId);
@@ -28,6 +28,50 @@ export default function SlotsArticlePage() {
       if (metaDescription) {
         metaDescription.setAttribute('content', articleExcerpt);
       }
+
+      // 添加 Article Schema.org 结构化数据
+      const articleSchema = {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": articleTitle,
+        "description": articleExcerpt,
+        "image": article.image,
+        "datePublished": article.date,
+        "dateModified": article.date,
+        "author": {
+          "@type": "Person",
+          "name": articleAuthor
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Super99au",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://static.readdy.ai/image/31a1107996a99a56af02e61b22b1b81c/d5a1169527fb3b33d0026e1f33b31cf5.png"
+          }
+        },
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": window.location.href
+        }
+      };
+
+      const script = document.createElement('script');
+      script.type = 'application/ld+json';
+      script.text = JSON.stringify(articleSchema);
+      document.head.appendChild(script);
+
+      // 更新 last-modified
+      const lastModified = document.getElementById('last-modified');
+      if (lastModified) {
+        lastModified.setAttribute('content', new Date().toISOString());
+      }
+
+      return () => {
+        if (script.parentNode) {
+          document.head.removeChild(script);
+        }
+      };
     }
 
     const handleScroll = () => {
@@ -35,7 +79,7 @@ export default function SlotsArticlePage() {
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [article, articleTitle, articleExcerpt, t]);
+  }, [article, articleTitle, articleExcerpt, articleAuthor, t]);
 
   if (!article) {
     return (
@@ -60,6 +104,30 @@ export default function SlotsArticlePage() {
       
       <main className="pt-32 pb-16">
         <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* 面包屑导航 */}
+          <nav className="mb-6" aria-label="Breadcrumb">
+            <ol className="flex items-center space-x-2 text-sm text-gray-600" itemScope itemType="https://schema.org/BreadcrumbList">
+              <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+                <a href="/" className="hover:text-amber-600 transition-colors" itemProp="item">
+                  <span itemProp="name">{i18n.language === 'en' ? 'Home' : '首页'}</span>
+                </a>
+                <meta itemProp="position" content="1" />
+              </li>
+              <li><i className="ri-arrow-right-s-line"></i></li>
+              <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+                <a href="/slots" className="hover:text-amber-600 transition-colors" itemProp="item">
+                  <span itemProp="name">Slots</span>
+                </a>
+                <meta itemProp="position" content="2" />
+              </li>
+              <li><i className="ri-arrow-right-s-line"></i></li>
+              <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+                <span className="text-gray-900 font-medium" itemProp="name">{articleTitle}</span>
+                <meta itemProp="position" content="3" />
+              </li>
+            </ol>
+          </nav>
+
           <Link 
             to="/slots"
             className="inline-flex items-center gap-2 text-amber-600 hover:text-amber-700 mb-8 transition-colors"
@@ -107,7 +175,8 @@ export default function SlotsArticlePage() {
           <div className="relative w-full h-96 mb-12 rounded-2xl overflow-hidden">
             <img
               src={article.image}
-              alt={articleTitle}
+              alt={`${articleTitle} - Super99au Slots 老虎机游戏`}
+              title={`${articleTitle} - Slots 游戏攻略技巧`}
               className="w-full h-full object-cover object-top"
               onError={(e) => {
                 const target = e.target as HTMLImageElement;
@@ -118,7 +187,7 @@ export default function SlotsArticlePage() {
 
           <div className="prose prose-lg max-w-none">
             <div className="text-xl text-gray-700 mb-8 font-medium">
-              {articleExcerpt}
+              <strong>{articleExcerpt}</strong>
             </div>
             
             <div 
@@ -135,9 +204,14 @@ export default function SlotsArticlePage() {
               <p className="text-lg mb-6 text-white/90">
                 {t('page.exploreGames')}
               </p>
-              <button className="px-8 py-3 bg-white text-amber-600 font-semibold rounded-lg hover:bg-gray-100 transition-colors cursor-pointer whitespace-nowrap">
+              <a
+                href="https://t.ly/s99auBlog"
+                target="_blank"
+                rel="noopener noreferrer nofollow"
+                className="inline-block px-8 py-3 bg-white text-amber-600 font-semibold rounded-lg hover:bg-gray-100 transition-colors cursor-pointer whitespace-nowrap"
+              >
                 {t('page.startPlaying')}
-              </button>
+              </a>
             </div>
           </div>
         </article>

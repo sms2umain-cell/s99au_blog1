@@ -22,7 +22,7 @@ export const home = {
   
   categories: {
     title: '游戏分类',
-    subtitle: 'Super99au 为您提供多样化的游戏选择，满足不同玩家的需求',
+    subtitle: 'S99au 为您提供多样化的游戏选择，满足不同玩家的需求',
     pokies: {
       title: 'Pokies',
       description: '探索最受欢迎的老虎机游戏'
@@ -68,10 +68,10 @@ export const home = {
   
   latest: {
     title: '最新文章',
-    subtitle: '获取 Super99au 最新的游戏攻略、策略技巧和行业资讯',
+    subtitle: '获取 S99au 最新的游戏攻略、策略技巧和行业资讯',
     article1: {
-      title: 'Super99au Pokies 完全入门指南',
-      excerpt: '了解如何在 Super99au 开始您的 Pokies 之旅，掌握基本玩法和策略',
+      title: 'S99au Pokies 完全入门指南',
+      excerpt: '了解如何在 S99au 开始您的 Pokies 之旅，掌握基本玩法和策略',
       category: 'Pokies',
       tags: ['入门指南', 'Pokies', '策略技巧']
     },
@@ -83,7 +83,7 @@ export const home = {
     },
     article3: {
       title: 'Live Games 真人娱乐场完全指南',
-      excerpt: '体验 Super99au 真人娱乐场的魅力，与专业荷官实时互动',
+      excerpt: '体验 S99au 真人娱乐场的魅力，与专业荷官实时互动',
       category: 'Live Games',
       tags: ['真人游戏', 'Live Casino', '互动体验']
     }
@@ -146,7 +146,7 @@ export const home = {
     terms: '使用条款',
     responsibleGaming: '负责任游戏',
     paymentTitle: '支持的支付方式',
-    copyright: '© 2024 S99AU Gaming Blog. All rights reserved.',
+    copyright: '© 2025 S99AU Gaming Blog. All rights reserved.',
     poweredBy: 'Powered by Readdy'
   }
 };
