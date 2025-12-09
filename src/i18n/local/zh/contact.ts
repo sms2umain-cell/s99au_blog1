@@ -18,7 +18,7 @@ export const contact = {
   emailInfo: '邮箱',
   phoneInfo: '电话',
   workingHoursInfo: '工作时间',
-  workingHoursText: '周一至周日 24/7',
+  workingHoursText: '24/7',
   followTitle: '关注我们',
   followSubtitle: '在社交媒体上关注我们，获取最新的游戏资讯和优惠信息'
 };

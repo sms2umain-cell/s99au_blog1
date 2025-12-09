@@ -18,7 +18,7 @@ export const contact = {
   emailInfo: 'Email',
   phoneInfo: 'Phone',
   workingHoursInfo: 'Working Hours',
-  workingHoursText: 'Monday to Sunday 24/7',
+  workingHoursText: '24/7',
   followTitle: 'Follow Us',
   followSubtitle: 'Follow us on social media for the latest gaming news and promotions'
 };

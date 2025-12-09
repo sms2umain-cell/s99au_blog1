@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import Navbar from '../home/components/Navbar';
@@ -174,39 +173,49 @@ export default function ContactPage() {
                 {t('infoTitle')}
               </h2>
               
-              <div className="space-y-6">
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-amber-500 to-amber-600 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <i className="ri-mail-line text-white text-xl"></i>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900 mb-1">{t('emailInfo')}</h3>
-                    <p className="text-gray-600">support@s99au.com</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-amber-500 to-amber-600 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <i className="ri-phone-line text-white text-xl"></i>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900 mb-1">{t('phoneInfo')}</h3>
-                    <p className="text-gray-600">+60 12-345 6789</p>
+              <div className="space-y-8">
+                <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+                  <div className="flex items-start space-x-4">
+                    <div className="w-14 h-14 bg-gradient-to-br from-amber-500 to-amber-600 rounded-xl flex items-center justify-center flex-shrink-0 shadow-md">
+                      <i className="ri-mail-line text-white text-2xl"></i>
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="font-bold text-lg text-gray-900 mb-2">{t('emailInfo')}</h3>
+                      <a href="mailto:s99au.official@gmail.com" className="text-amber-600 hover:text-amber-700 transition-colors text-base">
+                        s99au.official@gmail.com
+                      </a>
+                    </div>
                   </div>
                 </div>
 
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-amber-500 to-amber-600 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <i className="ri-time-line text-white text-xl"></i>
+                <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+                  <div className="flex items-start space-x-4">
+                    <div className="w-14 h-14 bg-gradient-to-br from-amber-500 to-amber-600 rounded-xl flex items-center justify-center flex-shrink-0 shadow-md">
+                      <i className="ri-phone-line text-white text-2xl"></i>
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="font-bold text-lg text-gray-900 mb-2">{t('phoneInfo')}</h3>
+                      <a href="tel:+6142024917" className="text-amber-600 hover:text-amber-700 transition-colors text-base">
+                        +61 420 249 17
+                      </a>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900 mb-1">{t('workingHoursInfo')}</h3>
-                    <p className="text-gray-600">{t('workingHoursText')}</p>
+                </div>
+
+                <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+                  <div className="flex items-start space-x-4">
+                    <div className="w-14 h-14 bg-gradient-to-br from-amber-500 to-amber-600 rounded-xl flex items-center justify-center flex-shrink-0 shadow-md">
+                      <i className="ri-time-line text-white text-2xl"></i>
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="font-bold text-lg text-gray-900 mb-2">{t('workingHoursInfo')}</h3>
+                      <p className="text-gray-700 text-base font-medium">{t('workingHoursText')}</p>
+                    </div>
                   </div>
                 </div>
               </div>
 
-              <div className="mt-12 bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl p-8">
+              <div className="mt-12 bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl p-8 shadow-lg">
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">
                   {t('followTitle')}
                 </h3>
@@ -226,7 +235,7 @@ export default function ContactPage() {
                       href={social.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`w-12 h-12 bg-white rounded-full flex items-center justify-center ${social.color} text-gray-700 hover:text-white transition-all shadow-md cursor-pointer`}
+                      className={`w-12 h-12 bg-white rounded-full flex items-center justify-center ${social.color} text-gray-700 hover:text-white transition-all shadow-md hover:shadow-lg cursor-pointer`}
                     >
                       <i className={`${social.icon} text-xl`}></i>
                     </a>
