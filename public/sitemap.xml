@@ -6,7 +6,7 @@
   
   <!-- 首页 -->
   <url>
-    <loc>https://yourdomain.com/</loc>
+    <loc>https://s99au.com/</loc>
     <lastmod>2025-01-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
@@ -14,7 +14,7 @@
   
   <!-- Pokies 页面 -->
   <url>
-    <loc>https://yourdomain.com/pokies</loc>
+    <loc>https://s99au.com/pokies</loc>
     <lastmod>2025-01-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -22,7 +22,7 @@
   
   <!-- Slots 页面 -->
   <url>
-    <loc>https://yourdomain.com/slots</loc>
+    <loc>https://s99au.com/slots</loc>
     <lastmod>2025-01-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -30,7 +30,7 @@
   
   <!-- Live Games 页面 -->
   <url>
-    <loc>https://yourdomain.com/live-games</loc>
+    <loc>https://s99au.com/live-games</loc>
     <lastmod>2025-01-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -38,7 +38,7 @@
   
   <!-- Sports 页面 -->
   <url>
-    <loc>https://yourdomain.com/sports</loc>
+    <loc>https://s99au.com/sports</loc>
     <lastmod>2025-01-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -46,7 +46,7 @@
   
   <!-- Blog 页面 -->
   <url>
-    <loc>https://yourdomain.com/blog</loc>
+    <loc>https://s99au.com/blog</loc>
     <lastmod>2025-01-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -54,7 +54,7 @@
   
   <!-- 联系我们页面 -->
   <url>
-    <loc>https://yourdomain.com/contact</loc>
+    <loc>https://s99au.com/contact</loc>
     <lastmod>2025-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

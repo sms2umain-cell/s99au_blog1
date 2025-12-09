@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -13,11 +12,11 @@ export default function HomePage() {
 
   useEffect(() => {
     // SEO Meta Tags
-    document.title = 'Pokies, Slots, Live Games, Sports 游戏博客 - 专业游戏攻略与技巧分享';
+    document.title = 'S99au - Australia\'s Premier Online Gaming Platform | Pokies, Slots & Sports Betting';
     
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-      metaDescription.setAttribute('content', '专业的 Pokies 老虎机、Slots 在线老虎机、Live Games 真人娱乐场和 Sports 体育投注知识博客。提供游戏攻略、策略技巧、新手指南和行业资讯，帮助玩家提升游戏体验和投注水平。');
+      metaDescription.setAttribute('content', 'S99au is Australia\'s leading online gaming platform offering pokies, slots, sports betting, and live dealer games. Enjoy high RTP, fair gaming environment, and 24/7 professional customer support.');
     }
     
     const handleScroll = () => {
