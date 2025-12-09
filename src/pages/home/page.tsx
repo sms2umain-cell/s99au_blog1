@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Categories from './components/Categories';
-import FeaturedGames from './components/FeaturedGames';
+import FeaturedArticles from './components/FeaturedGames';
 import LatestArticles from './components/LatestArticles';
 import CommentSection from './components/CommentSection';
 import Footer from './components/Footer';
@@ -33,7 +33,7 @@ export default function HomePage() {
       <main>
         <Hero />
         <Categories />
-        <FeaturedGames />
+        <FeaturedArticles />
         <LatestArticles />
         <CommentSection />
       </main>

@@ -1,9 +1,11 @@
 
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import Navbar from '../home/components/Navbar';
 import Footer from '../home/components/Footer';
 
 export default function ContactPage() {
+  const { t } = useTranslation('contact');
   const [scrolled, setScrolled] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
@@ -18,12 +20,12 @@ export default function ContactPage() {
     e.preventDefault();
     
     if (!formData.name || !formData.email || !formData.subject || !formData.message) {
-      alert('请填写所有必填字段');
+      alert(t('fillAllFields'));
       return;
     }
 
     if (formData.message.length > 500) {
-      alert('留言内容不能超过500个字符');
+      alert(t('maxCharacters'));
       return;
     }
 
@@ -67,23 +69,23 @@ export default function ContactPage() {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-              联系我们
+              {t('title')}
             </h1>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              有任何问题或建议？我们随时为你服务
+              {t('subtitle')}
             </p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div>
               <h2 className="text-3xl font-bold text-gray-900 mb-8">
-                发送消息
+                {t('formTitle')}
               </h2>
               
               <form onSubmit={handleSubmit} className="space-y-6" data-readdy-form id="contact_form">
                 <div>
                   <label htmlFor="contact-name" className="block text-sm font-medium text-gray-700 mb-2">
-                    姓名 *
+                    {t('nameLabel')} *
                   </label>
                   <input
                     type="text"
@@ -98,7 +100,7 @@ export default function ContactPage() {
 
                 <div>
                   <label htmlFor="contact-email" className="block text-sm font-medium text-gray-700 mb-2">
-                    邮箱 *
+                    {t('emailLabel')} *
                   </label>
                   <input
                     type="email"
@@ -113,7 +115,7 @@ export default function ContactPage() {
 
                 <div>
                   <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
-                    主题 *
+                    {t('subjectLabel')} *
                   </label>
                   <input
                     type="text"
@@ -128,7 +130,7 @@ export default function ContactPage() {
 
                 <div>
                   <label htmlFor="contact-message" className="block text-sm font-medium text-gray-700 mb-2">
-                    消息内容 * (最多500字)
+                    {t('messageLabel')} * {t('messageHint')}
                   </label>
                   <textarea
                     id="contact-message"
@@ -141,7 +143,7 @@ export default function ContactPage() {
                     required
                   />
                   <p className="text-xs text-gray-500 mt-1">
-                    {formData.message.length}/500 字符
+                    {formData.message.length}/500 {t('characterCount')}
                   </p>
                 </div>
 
@@ -150,18 +152,18 @@ export default function ContactPage() {
                   disabled={isSubmitting}
                   className="w-full px-8 py-4 bg-gradient-to-r from-amber-500 to-amber-600 text-white text-lg font-semibold rounded-lg hover:from-amber-600 hover:to-amber-700 transition-all shadow-lg disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap cursor-pointer"
                 >
-                  {isSubmitting ? '发送中...' : '发送消息'}
+                  {isSubmitting ? t('sending') : t('sendButton')}
                 </button>
 
                 {submitStatus === 'success' && (
                   <div className="p-4 bg-green-50 border border-green-200 rounded-lg text-green-700 text-sm">
-                    消息发送成功！我们会尽快回复你。
+                    {t('successMessage')}
                   </div>
                 )}
 
                 {submitStatus === 'error' && (
                   <div className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
-                    发送失败，请稍后再试。
+                    {t('errorMessage')}
                   </div>
                 )}
               </form>
@@ -169,7 +171,7 @@ export default function ContactPage() {
 
             <div>
               <h2 className="text-3xl font-bold text-gray-900 mb-8">
-                联系信息
+                {t('infoTitle')}
               </h2>
               
               <div className="space-y-6">
@@ -178,8 +180,8 @@ export default function ContactPage() {
                     <i className="ri-mail-line text-white text-xl"></i>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-900 mb-1">邮箱</h3>
-                    <p className="text-gray-600">support@e99gaming.com</p>
+                    <h3 className="font-semibold text-gray-900 mb-1">{t('emailInfo')}</h3>
+                    <p className="text-gray-600">support@s99au.com</p>
                   </div>
                 </div>
 
@@ -188,7 +190,7 @@ export default function ContactPage() {
                     <i className="ri-phone-line text-white text-xl"></i>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-900 mb-1">电话</h3>
+                    <h3 className="font-semibold text-gray-900 mb-1">{t('phoneInfo')}</h3>
                     <p className="text-gray-600">+60 12-345 6789</p>
                   </div>
                 </div>
@@ -198,18 +200,18 @@ export default function ContactPage() {
                     <i className="ri-time-line text-white text-xl"></i>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-900 mb-1">工作时间</h3>
-                    <p className="text-gray-600">周一至周日 24/7</p>
+                    <h3 className="font-semibold text-gray-900 mb-1">{t('workingHoursInfo')}</h3>
+                    <p className="text-gray-600">{t('workingHoursText')}</p>
                   </div>
                 </div>
               </div>
 
               <div className="mt-12 bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl p-8">
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                  关注我们
+                  {t('followTitle')}
                 </h3>
                 <p className="text-gray-600 mb-6">
-                  在社交媒体上关注我们，获取最新的游戏资讯和优惠信息
+                  {t('followSubtitle')}
                 </p>
                 <div className="flex space-x-3">
                   {[

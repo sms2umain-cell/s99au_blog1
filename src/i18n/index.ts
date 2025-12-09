@@ -1,19 +1,24 @@
+
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
-import LanguageDetector from 'i18next-browser-languagedetector';
-import messages from './local/index';
+import { resources } from './local';
 
 i18n
-  .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    lng: 'en',
+    resources,
+    lng: 'en', // Default language is English
     fallbackLng: 'en',
-    debug: false,
-    resources: messages,
     interpolation: {
-      escapeValue: false,
+      escapeValue: false
     },
+    react: {
+      useSuspense: false
+    },
+    debug: process.env.NODE_ENV === 'development'
+  })
+  .catch((error) => {
+    console.error('Failed to initialize i18n:', error);
   });
 
 export default i18n;

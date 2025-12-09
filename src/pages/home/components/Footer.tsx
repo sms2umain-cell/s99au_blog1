@@ -1,33 +1,36 @@
-
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 export default function Footer() {
+  const { t } = useTranslation('home');
+
   const footerLinks = {
     games: {
-      title: '游戏分类',
+      title: t('footer.gamesTitle'),
       links: [
-        { name: 'Pokies', path: '/pokies' },
-        { name: 'Slots', path: '/slots' },
-        { name: 'Live Games', path: '/live-games' },
-        { name: 'Sports Betting', path: '/sports' }
+        { name: t('footer.pokies'), path: '/pokies' },
+        { name: t('footer.slots'), path: '/slots' },
+        { name: t('footer.liveGames'), path: '/live-games' },
+        { name: t('footer.sports'), path: '/sports' }
       ]
     },
     resources: {
-      title: '资源中心',
+      title: t('footer.resourcesTitle'),
       links: [
-        { name: '新手指南', path: '/guide' },
-        { name: '游戏策略', path: '/strategy' },
-        { name: '常见问题', path: '/faq' },
-        { name: '游戏评测', path: '/reviews' }
+        { name: t('footer.guide'), path: '/guide' },
+        { name: t('footer.strategy'), path: '/strategy' },
+        { name: t('footer.faq'), path: '/faq' },
+        { name: t('footer.reviews'), path: '/reviews' }
       ]
     },
     company: {
-      title: '关于我们',
+      title: t('footer.companyTitle'),
       links: [
-        { name: '公司介绍', path: '/about' },
-        { name: '联系我们', path: '/contact' },
-        { name: '隐私政策', path: '/privacy' },
-        { name: '使用条款', path: '/terms' }
+        { name: t('footer.about'), path: '/about' },
+        { name: t('footer.contact'), path: '/contact' },
+        { name: t('footer.privacy'), path: '/privacy' },
+        { name: t('footer.terms'), path: '/terms' },
+        { name: t('footer.responsibleGaming'), path: '/responsible-gaming' }
       ]
     }
   };
@@ -52,11 +55,11 @@ export default function Footer() {
           <div>
             <img 
               src="https://static.readdy.ai/image/31a1107996a99a56af02e61b22b1b81c/d1c5d3ee01cb9701f16d397dd5f6df5c.png" 
-              alt="E99 Logo" 
+              alt="S99AU Logo" 
               className="h-12 mb-6"
             />
             <p className="text-amber-100 text-sm leading-relaxed mb-6">
-              专业的在线游戏博客平台，为玩家提供最新的游戏资讯、策略指南和行业动态。
+              {t('footer.description')}
             </p>
             <div className="flex space-x-3">
               {socialLinks.map((social, index) => (
@@ -91,7 +94,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-white/20 pt-8 mb-8">
-          <h3 className="text-lg font-bold mb-4 text-center">支持的支付方式</h3>
+          <h3 className="text-lg font-bold mb-4 text-center">{t('footer.paymentTitle')}</h3>
           <div className="flex flex-wrap justify-center gap-4">
             {paymentMethods.map((method, index) => (
               <div
@@ -106,7 +109,7 @@ export default function Footer() {
 
         <div className="border-t border-white/20 pt-8 text-center">
           <p className="text-amber-100 text-sm mb-2">
-            © 2024 E99 Gaming Blog. All rights reserved.
+            {t('footer.copyright')}
           </p>
           <p className="text-amber-100 text-xs">
             <a 
@@ -115,7 +118,7 @@ export default function Footer() {
               rel="noopener noreferrer"
               className="hover:text-white transition-colors cursor-pointer"
             >
-              Powered by Readdy
+              {t('footer.poweredBy')}
             </a>
           </p>
         </div>

@@ -1,7 +1,9 @@
-
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 export default function CommentSection() {
+  const { t } = useTranslation('home');
+  
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -14,12 +16,12 @@ export default function CommentSection() {
     e.preventDefault();
     
     if (!formData.name || !formData.email || !formData.message) {
-      alert('请填写所有必填字段');
+      alert(t('comments.fillAllFields'));
       return;
     }
 
     if (formData.message.length > 500) {
-      alert('留言内容不能超过500个字符');
+      alert(t('comments.maxCharacters'));
       return;
     }
 
@@ -56,31 +58,31 @@ export default function CommentSection() {
 
   const recentComments = [
     {
-      name: 'Alex Johnson',
+      name: t('comments.comment1.name'),
       avatar: 'AJ',
-      comment: '这个网站的游戏推荐非常专业！帮我找到了很多好玩的 Pokies 游戏。',
-      date: '2天前',
+      comment: t('comments.comment1.text'),
+      date: t('comments.comment1.date'),
       rating: 5
     },
     {
-      name: 'Maria Garcia',
+      name: t('comments.comment2.name'),
       avatar: 'MG',
-      comment: 'Live Casino 的攻略文章写得很详细，对新手非常友好。',
-      date: '3天前',
+      comment: t('comments.comment2.text'),
+      date: t('comments.comment2.date'),
       rating: 5
     },
     {
-      name: 'Chen Wei',
+      name: t('comments.comment3.name'),
       avatar: 'CW',
-      comment: '体育投注的分析很到位，跟着推荐已经赢了好几次了！',
-      date: '5天前',
+      comment: t('comments.comment3.text'),
+      date: t('comments.comment3.date'),
       rating: 4
     },
     {
-      name: 'Sophie Martin',
+      name: t('comments.comment4.name'),
       avatar: 'SM',
-      comment: '网站设计很漂亮，内容也很丰富，是我最喜欢的游戏博客。',
-      date: '1周前',
+      comment: t('comments.comment4.text'),
+      date: t('comments.comment4.date'),
       rating: 5
     }
   ];
@@ -90,23 +92,23 @@ export default function CommentSection() {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            留言与互动
+            {t('comments.title')}
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            分享你的想法，与其他玩家交流游戏心得
+            {t('comments.subtitle')}
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           <div>
             <h3 className="text-2xl font-bold text-gray-900 mb-6">
-              发表留言
+              {t('comments.formTitle')}
             </h3>
             
             <form onSubmit={handleSubmit} className="space-y-6" data-readdy-form id="comment_form">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                  姓名 *
+                  {t('comments.nameLabel')} *
                 </label>
                 <input
                   type="text"
@@ -121,7 +123,7 @@ export default function CommentSection() {
 
               <div>
                 <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                  邮箱 *
+                  {t('comments.emailLabel')} *
                 </label>
                 <input
                   type="email"
@@ -136,7 +138,7 @@ export default function CommentSection() {
 
               <div>
                 <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                  留言内容 * (最多500字)
+                  {t('comments.messageLabel')} * {t('comments.messageHint')}
                 </label>
                 <textarea
                   id="message"
@@ -149,7 +151,7 @@ export default function CommentSection() {
                   required
                 />
                 <p className="text-xs text-gray-500 mt-1">
-                  {formData.message.length}/500 字符
+                  {formData.message.length}/500 {t('comments.characterCount')}
                 </p>
               </div>
 
@@ -158,18 +160,18 @@ export default function CommentSection() {
                 disabled={isSubmitting}
                 className="w-full px-8 py-4 bg-gradient-to-r from-amber-500 to-amber-600 text-white text-lg font-semibold rounded-lg hover:from-amber-600 hover:to-amber-700 transition-all shadow-lg disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap cursor-pointer"
               >
-                {isSubmitting ? '提交中...' : '提交留言'}
+                {isSubmitting ? t('comments.submitting') : t('comments.submitButton')}
               </button>
 
               {submitStatus === 'success' && (
                 <div className="p-4 bg-green-50 border border-green-200 rounded-lg text-green-700 text-sm">
-                  留言提交成功！感谢你的反馈。
+                  {t('comments.successMessage')}
                 </div>
               )}
 
               {submitStatus === 'error' && (
                 <div className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
-                  提交失败，请稍后再试。
+                  {t('comments.errorMessage')}
                 </div>
               )}
             </form>
@@ -177,7 +179,7 @@ export default function CommentSection() {
 
           <div>
             <h3 className="text-2xl font-bold text-gray-900 mb-6">
-              最近留言
+              {t('comments.recentTitle')}
             </h3>
             
             <div className="space-y-6">
