@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import Navbar from '../home/components/Navbar';
 import Footer from '../home/components/Footer';
 import { slotsArticleContents } from './slotsArticleContents';
+import { addSchemaOrg, updateMetaTags, getSiteUrl } from '../../utils/seo';
 
 export default function SlotsPage() {
   const { t } = useTranslation('slots');
@@ -13,18 +14,34 @@ export default function SlotsPage() {
   const articlesPerPage = 6;
 
   useEffect(() => {
+    const siteUrl = getSiteUrl();
+    const title = t('page.title');
+    const description = t('page.description');
+    
     // SEO Meta Tags
-    document.title = t('page.title');
-    
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', t('page.description'));
-    }
-    
-    const metaKeywords = document.querySelector('meta[name="keywords"]');
-    if (metaKeywords) {
-      metaKeywords.setAttribute('content', t('page.keywords'));
-    }
+    updateMetaTags({
+      title,
+      description,
+      keywords: t('page.keywords'),
+      canonical: `${siteUrl}/slots`,
+      ogTitle: title,
+      ogDescription: description,
+      ogUrl: `${siteUrl}/slots`
+    });
+
+    // Schema.org JSON-LD
+    addSchemaOrg({
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": title,
+      "description": description,
+      "url": `${siteUrl}/slots`,
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "S99au",
+        "url": `${siteUrl}/`
+      }
+    });
     
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);

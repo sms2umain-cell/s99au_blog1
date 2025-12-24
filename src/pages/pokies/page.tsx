@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import Navbar from '../home/components/Navbar';
 import Footer from '../home/components/Footer';
 import { pokiesArticleContents } from './pokiesArticleContents';
+import { addSchemaOrg, updateMetaTags, getSiteUrl } from '../../utils/seo';
 
 export default function PokiesPage() {
   const { t, i18n } = useTranslation('pokies');
@@ -13,24 +14,39 @@ export default function PokiesPage() {
   const articlesPerPage = 6;
 
   useEffect(() => {
+    const siteUrl = getSiteUrl();
+    
     // SEO Meta Tags
     const title = i18n.language === 'en' 
       ? 'Pokies Blog - Game Guides, Tips and Knowledge Sharing | Gaming Blog'
       : 'Pokies 老虎机博客 - 游戏攻略、技巧和知识分享 | Gaming Blog';
-    document.title = title;
+    const description = i18n.language === 'en'
+      ? 'In-depth knowledge, tips and culture of Pokies slot machines. Complete guide from beginner to expert, including RTP analysis, symbol features, game strategies, historical evolution and more professional content to help players improve their gaming experience.'
+      : '深入了解 Pokies 老虎机的知识、技巧和文化。提供从入门到精通的完整指南，包括 RTP 解析、符号功能、游戏策略、历史演变等专业内容，帮助玩家提升游戏体验。';
     
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      const description = i18n.language === 'en'
-        ? 'In-depth knowledge, tips and culture of Pokies slot machines. Complete guide from beginner to expert, including RTP analysis, symbol features, game strategies, historical evolution and more professional content to help players improve their gaming experience.'
-        : '深入了解 Pokies 老虎机的知识、技巧和文化。提供从入门到精通的完整指南，包括 RTP 解析、符号功能、游戏策略、历史演变等专业内容，帮助玩家提升游戏体验。';
-      metaDescription.setAttribute('content', description);
-    }
-    
-    const metaKeywords = document.querySelector('meta[name="keywords"]');
-    if (metaKeywords) {
-      metaKeywords.setAttribute('content', 'Pokies, 老虎机, Pokies攻略, 老虎机技巧, RTP, 波动性, 游戏策略, 澳洲Pokies, 老虎机入门, 游戏评测');
-    }
+    updateMetaTags({
+      title,
+      description,
+      keywords: 'Pokies, 老虎机, Pokies攻略, 老虎机技巧, RTP, 波动性, 游戏策略, 澳洲Pokies, 老虎机入门, 游戏评测',
+      canonical: `${siteUrl}/pokies`,
+      ogTitle: title,
+      ogDescription: description,
+      ogUrl: `${siteUrl}/pokies`
+    });
+
+    // Schema.org JSON-LD
+    addSchemaOrg({
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": title,
+      "description": description,
+      "url": `${siteUrl}/pokies`,
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "S99au",
+        "url": `${siteUrl}/`
+      }
+    });
     
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);

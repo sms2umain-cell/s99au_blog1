@@ -1,10 +1,10 @@
-
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Navbar from '../home/components/Navbar';
 import Footer from '../home/components/Footer';
 import { useSportsArticles } from './sportsArticleContents';
+import { addSchemaOrg, updateMetaTags, getSiteUrl } from '../../utils/seo';
 
 export default function SportsPage() {
   const { t } = useTranslation(['sports', 'common']);
@@ -16,18 +16,34 @@ export default function SportsPage() {
   const sportsArticles = useSportsArticles();
 
   useEffect(() => {
+    const siteUrl = getSiteUrl();
+    const title = 'Sports 体育投注博客 - 投注策略、赛事分析和技巧分享 | Gaming Blog';
+    const description = '学习体育投注知识和策略，掌握赛事分析技巧，提升投注水平。包括足球投注、NBA篮球、网球、电竞等多种体育项目的专业分析和资金管理方法。';
+    
     // SEO Meta Tags
-    document.title = 'Sports 体育投注博客 - 投注策略、赛事分析和技巧分享 | Gaming Blog';
-    
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', '学习体育投注知识和策略，掌握赛事分析技巧，提升投注水平。包括足球投注、NBA篮球、网球、电竞等多种体育项目的专业分析和资金管理方法。');
-    }
-    
-    const metaKeywords = document.querySelector('meta[name="keywords"]');
-    if (metaKeywords) {
-      metaKeywords.setAttribute('content', 'Sports, 体育投注, 足球投注, NBA投注, 篮球投注, 赔率分析, 滚球投注, 串关投注, 电竞投注, 投注策略, 资金管理');
-    }
+    updateMetaTags({
+      title,
+      description,
+      keywords: 'Sports, 体育投注, 足球投注, NBA投注, 篮球投注, 赔率分析, 滚球投注, 串关投注, 电竞投注, 投注策略, 资金管理',
+      canonical: `${siteUrl}/sports`,
+      ogTitle: title,
+      ogDescription: description,
+      ogUrl: `${siteUrl}/sports`
+    });
+
+    // Schema.org JSON-LD
+    addSchemaOrg({
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": title,
+      "description": description,
+      "url": `${siteUrl}/sports`,
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "S99au",
+        "url": `${siteUrl}/`
+      }
+    });
     
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);

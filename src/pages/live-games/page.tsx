@@ -1,14 +1,51 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Navbar from '../home/components/Navbar';
 import Footer from '../home/components/Footer';
 import { liveGamesArticles as liveGamesArticlesData } from './liveGamesArticleContents';
+import { addSchemaOrg, updateMetaTags, getSiteUrl } from '../../utils/seo';
 
 export default function LiveGamesPage() {
   const { t, i18n } = useTranslation(['liveGames', 'common']);
   const [scrolled, setScrolled] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState('all');
+
+  useEffect(() => {
+    const siteUrl = getSiteUrl();
+    const title = t('page.title');
+    const description = t('page.subtitle');
+    
+    // SEO Meta Tags
+    updateMetaTags({
+      title,
+      description,
+      canonical: `${siteUrl}/live-games`,
+      ogTitle: title,
+      ogDescription: description,
+      ogUrl: `${siteUrl}/live-games`
+    });
+
+    // Schema.org JSON-LD
+    addSchemaOrg({
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": title,
+      "description": description,
+      "url": `${siteUrl}/live-games`,
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "S99au",
+        "url": `${siteUrl}/`
+      }
+    });
+    
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [t]);
 
   const liveGamesArticles = Array.from({ length: 15 }, (_, i) => {
     const id = i + 1;

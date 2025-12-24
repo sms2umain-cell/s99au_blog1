@@ -1,9 +1,25 @@
-# 允许所有搜索引擎爬取
-User-agent: *
-Allow: /
+# Robots.txt for S99au.com
 
-# 网站地图位置
+User-agent: *
+
+# Allow public pages
+Allow: /
+Allow: /pokies
+Allow: /slots
+Allow: /live-games
+Allow: /sports
+Allow: /guide
+Allow: /strategy
+Allow: /faq
+Allow: /reviews
+Allow: /about
+Allow: /contact
+Allow: /responsible-gaming
+
+# Disallow private pages (none currently)
+
+# Sitemap location
 Sitemap: https://s99au.com/sitemap.xml
 
-# 爬取延迟（可选，避免服务器压力）
+# Crawl delay (optional, to avoid server overload)
 Crawl-delay: 1

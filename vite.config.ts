@@ -5,6 +5,7 @@ import AutoImport from "unplugin-auto-import/vite";
 
 const base = process.env.BASE_PATH || "/";
 const isPreview = process.env.IS_PREVIEW ? true : false;
+const siteUrl = process.env.SITE_URL || "https://s99au.com";
 // https://vite.dev/config/
 export default defineConfig({
   define: {
@@ -13,6 +14,7 @@ export default defineConfig({
     __READDY_PROJECT_ID__: JSON.stringify(process.env.PROJECT_ID || ""),
     __READDY_VERSION_ID__: JSON.stringify(process.env.VERSION_ID || ""),
     __READDY_AI_DOMAIN__: JSON.stringify(process.env.READDY_AI_DOMAIN || ""),
+    VITE_SITE_URL: JSON.stringify(siteUrl),
   },
   plugins: [
     react(),
