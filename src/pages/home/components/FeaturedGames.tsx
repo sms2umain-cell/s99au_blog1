@@ -1,4 +1,3 @@
-
 import { useTranslation } from 'react-i18next';
 
 export default function FeaturedArticles() {
@@ -131,6 +130,10 @@ export default function FeaturedArticles() {
                   alt={`${article.title} - Super99au 游戏攻略配图`}
                   title={article.title}
                   className="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-300"
+                  width="600"
+                  height="400"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div className="absolute top-3 left-3">
                   <span

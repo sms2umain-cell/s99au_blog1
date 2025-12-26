@@ -1,8 +1,10 @@
+
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 export default function Hero() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [imagesLoaded, setImagesLoaded] = useState<boolean[]>([false, false, false]);
   const { t } = useTranslation('home');
 
   const slides = [
@@ -42,13 +44,21 @@ export default function Hero() {
     }
   };
 
+  const handleImageLoad = (index: number) => {
+    setImagesLoaded(prev => {
+      const newState = [...prev];
+      newState[index] = true;
+      return newState;
+    });
+  };
+
   const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
     const target = e.target as HTMLImageElement;
     target.src = 'https://readdy.ai/api/search-image?query=fallback%20casino%20background%20with%20golden%20lighting&width=1920&height=800&orientation=landscape';
   };
 
   return (
-    <div className="relative h-screen overflow-hidden">
+    <div className="relative h-screen overflow-hidden bg-gray-900">
       {slides.map((slide, index) => (
         <div
           key={index}
@@ -62,16 +72,26 @@ export default function Hero() {
               alt={`${slide.title} - Super99au 在线游戏平台`}
               title={`${slide.title} - 老虎机 Pokies 体育博彩`}
               className="w-full h-full object-cover object-top"
+              width="1920"
+              height="800"
+              loading={index === 0 ? 'eager' : 'lazy'}
+              fetchPriority={index === 0 ? 'high' : 'low'}
+              decoding={index === 0 ? 'sync' : 'async'}
+              onLoad={() => handleImageLoad(index)}
               onError={handleImageError}
+              style={{
+                opacity: imagesLoaded[index] ? 1 : 0,
+                transition: 'opacity 0.3s ease-in-out'
+              }}
             />
             <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60"></div>
           </div>
 
           <div className="relative h-full flex items-center justify-center">
             <div className="w-full max-w-4xl mx-auto px-4 text-center">
-              <div className="text-5xl md:text-7xl font-bold text-white mb-6 animate-fade-in">
+              <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 animate-fade-in">
                 {slide.title || ''}
-              </div>
+              </h1>
               <p className="text-2xl md:text-3xl text-amber-300 mb-4 font-medium">
                 {slide.subtitle || ''}
               </p>
